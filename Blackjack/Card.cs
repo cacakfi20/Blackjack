@@ -2,23 +2,32 @@
 
 public class Card
 {
-    public List<string> Value;
-    public List<string> Color;
+    public static List<string> Value;
+    public static List<string> Color;
 
-    public Card(List<string> _value, List<string> _color)
+    public Card()
     {
-        Value = new List<string>() { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        Value = new List<string>() { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
         Color = new List<string>() {"♤", "♧", "♡", "♢"};
     }
 
-    public string CreateCard()
+   public static void CreateCard()
     {
-        foreach (var value in Value)
+        foreach (string value in Value)
         {
-            foreach (var color in Color)
+            foreach (string color in Color)
             {
-                return value + color;
+                string card = $"{value}, {color}";
+                Deck.DeckAppend(card);
             }
         }
     }
+
+    public static void write()
+    {
+        foreach (var VARIABLE in Value)
+        {
+            Console.WriteLine(VARIABLE);
+        }
+    } 
 }

@@ -1,10 +1,15 @@
 ﻿namespace Blackjack;
 
-class Game
+class Blackjack
 {
     static void Main()
-    { 
-        public bool Game = true;
+    {
+        Console.WriteLine("BLACKJACK");
+        Console.WriteLine("-----------");
+        Console.WriteLine("Press enter to continue...");
+        Console.ReadLine();
+        Game.StartGame();
+        //Card.write();
     }
 
 }
