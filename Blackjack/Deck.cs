@@ -2,22 +2,18 @@
 
 public class Deck
 {
-    public static List<string> Cards { get; set; }
+    public static Object[] deck = new Object[52];
 
     public static void CreateDeck()
     {
         Card.CreateCard();
     }
-    public static void DeckAppend(string card)
-    {
-        Cards.Add(card);
-    }
-
     public static void WriteDeck()
     {
-        foreach (var VARIABLE in Cards)
+        for (int i = 0; i < 52; i++)
         {
-            Console.WriteLine(VARIABLE);
+            //System.Diagnostics.Debug.WriteLine(deck[i]);
+            Console.WriteLine(deck[i].ToString());
         }
     }
 }

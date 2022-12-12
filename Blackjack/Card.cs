@@ -2,32 +2,29 @@
 
 public class Card
 {
-    public static List<string> Value;
-    public static List<string> Color;
-
-    public Card()
+    public static string[] ValueArr = new string[] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+    public static string[] ColorArr = new string[] {"Hearts", "Diamonds", "Clubs", "Spades"};
+    public string Value;
+    public string Color;
+    
+    public Card(string value, string color)
     {
-        Value = new List<string>() { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-        Color = new List<string>() {"♤", "♧", "♡", "♢"};
+        Value = value;
+        Color = color;
     }
-
-   public static void CreateCard()
+    
+    public static void CreateCard()
     {
-        foreach (string value in Value)
+        int index = 0;
+        foreach (string val in ValueArr)
         {
-            foreach (string color in Color)
+            foreach (string col in ColorArr)
             {
-                string card = $"{value}, {color}";
-                Deck.DeckAppend(card);
+                Card card = new Card(val, col);
+                //Console.WriteLine($"{card.Value}, {card.Color}");
+                Deck.deck[index] = card;
+                index++;
             }
         }
     }
-
-    public static void write()
-    {
-        foreach (var VARIABLE in Value)
-        {
-            Console.WriteLine(VARIABLE);
-        }
-    } 
 }

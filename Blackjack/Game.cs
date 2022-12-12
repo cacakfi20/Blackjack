@@ -7,8 +7,9 @@ public class Game
         bool game = true;
         while (game)
         {
-            Deck.CreateDeck();
+            Card.CreateCard();
             Deck.WriteDeck();
+            Console.ReadLine();
         }
     }
 }
