@@ -7,9 +7,20 @@ public class Game
         bool game = true;
         while (game)
         {
-            Card.CreateCard();
+            Deck.CreateDeck();
+            Deck.Shuffle();
             Deck.WriteDeck();
             Console.ReadLine();
         }
+    }
+
+    public static void Zebricek()
+    {
+        
+    }
+
+    public static void Pravidla()
+    {
+        
     }
 }
