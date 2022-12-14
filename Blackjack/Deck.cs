@@ -34,4 +34,14 @@ public class Deck
         Random rnd = new Random();
         deck = deck.OrderBy(x => rnd.Next()).ToArray();
     }
+
+    public static object ReturnCardFromTopDeck()
+    {
+        return deck[deck.Length-1];
+    }
+
+    public static void RemoveTopCard()
+    {
+        Array.Resize(ref deck, deck.Length - 1);
+    }
 }

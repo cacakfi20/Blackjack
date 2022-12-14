@@ -9,7 +9,15 @@ public class Game
         {
             Deck.CreateDeck();
             Deck.Shuffle();
-            Deck.WriteDeck();
+            Console.WriteLine("------------");
+            Dealer.DealCardPlayer();
+            Dealer.DealCardPlayer();
+            Player.WriteHand();
+            Player.CountHand();
+            Dealer.DealCardDealer();
+            Dealer.WriteDealerCards();
+            Dealer.CountDealerHand();
+            Console.WriteLine("------------");
             Console.ReadLine();
         }
     }
