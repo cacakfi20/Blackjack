@@ -44,4 +44,9 @@ public class Deck
     {
         Array.Resize(ref deck, deck.Length - 1);
     }
+
+    public static void ResetDeck()
+    {
+        Array.Resize(ref deck, 52);
+    }
 }

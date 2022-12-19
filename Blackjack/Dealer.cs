@@ -2,18 +2,25 @@
 
 public class Dealer
 {
-    private static Object[] Hand = new Object[0];
+    public static Object[] Hand = new Object[0];
+    public static int CardTotal { get; set; }
 
     public static void DealCardPlayer()
     {
         Player.GetCard(Deck.ReturnCardFromTopDeck());
         Deck.RemoveTopCard();
     }
+    
+    public static void ResetHand()
+    {
+        Array.Resize(ref Hand, 0);
+    }
 
     public static void DealCardDealer()
     {
         Array.Resize(ref Hand, Hand.Length + 1);
         Hand[Hand.Length - 1] = Deck.ReturnCardFromTopDeck();
+        Deck.RemoveTopCard();
     }
 
     public static void WriteDealerCards()
@@ -54,9 +61,20 @@ public class Dealer
 
         if (totalValue > 21 && aceCount > 1)
         {
-            totalValue -= 10;
+            for (int i = 0; i < aceCount; i++)
+            {
+                if (totalValue > 21)
+                {
+                    totalValue -= 10;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
-        Console.WriteLine(totalValue);
+
+        CardTotal = totalValue;
     }
 
 }

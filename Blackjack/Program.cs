@@ -22,10 +22,12 @@ class Blackjack
             {
                 case "1":
                     Game.StartGame();
+                    Game.NextCard();
                     break;
                 case "2":
                     break;
                 case "3":
+                    Game.Zebricek();
                     break;
                 case "4":
                     break;
