@@ -28,7 +28,7 @@ public class Dealer
         Console.WriteLine("Dealerovi karty:");
         foreach (Card card in Hand)
         {
-            Console.WriteLine(card.Value + card.Color);
+            Console.WriteLine($"{card.Value} {card.Color}" );
         }
     }
     
@@ -59,7 +59,7 @@ public class Dealer
             }
         }
 
-        if (totalValue > 21 && aceCount > 1)
+        if (totalValue > 21 && aceCount > 0)
         {
             for (int i = 0; i < aceCount; i++)
             {
@@ -75,6 +75,7 @@ public class Dealer
         }
 
         CardTotal = totalValue;
+        //Console.WriteLine($"Dealerův počet je: {CardTotal}");
     }
 
 }

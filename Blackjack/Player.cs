@@ -20,7 +20,7 @@ public class Player
         Console.WriteLine("Vaše karty:");
         foreach (Card card in Hand)
         {
-            Console.WriteLine(card.Value + card.Color);
+            Console.WriteLine($"{card.Value} {card.Color}");
         }
     }
 
@@ -34,7 +34,7 @@ public class Player
         while (betting)
         {
             int sazka;
-            Console.WriteLine("Kolik chceš vsadit?");
+            Console.WriteLine($"Kolik chceš vsadit? (Tvoje peníze: {Money})");
             string sazkaStr = Console.ReadLine();
             int.TryParse(sazkaStr, out sazka);
             if (sazka > Money)
@@ -78,7 +78,7 @@ public class Player
             }
         }
 
-        if (totalValue > 21 && aceCount > 1)
+        if (totalValue > 21 && aceCount > 0)
         {
             for (int i = 0; i < aceCount; i++)
             {
@@ -92,20 +92,9 @@ public class Player
                 }
             }
         }
-
-        if (totalValue == 21)
-        {
-            Console.WriteLine("Vyhrál jsi!");
-            Money = Money + Bet;
-        }
-
-        if (totalValue > 21 )
-        {
-            Console.WriteLine("Prohrál jsi!");
-        }
-
+       
         CardTotal = totalValue;
-        Console.WriteLine(CardTotal);
+        Console.WriteLine($"Tvůj počet je: {CardTotal}");
     }
 
 }

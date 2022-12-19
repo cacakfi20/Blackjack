@@ -11,8 +11,9 @@ class Blackjack
         Player.Money = 5000;
         
         Console.WriteLine($"Vítej hráči '{Player.Name}'");
+        bool menu = true;
 
-        while (true)
+        while (menu)
         {
             Console.WriteLine("BLACKJACK");
             Console.WriteLine("-----------");
@@ -27,10 +28,11 @@ class Blackjack
                 case "2":
                     break;
                 case "3":
-                    Game.Zebricek();
+                    Game.Pravidla();
                     break;
                 case "4":
-                    break;
+                    menu = false;
+                    break; 
             }
         }
     }
