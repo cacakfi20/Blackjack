@@ -5,10 +5,24 @@ class Blackjack
 {
     static void Main()
     {
-        Console.WriteLine("Napiš svoje jméno...");
-        string name = Console.ReadLine();
-        Player.Name = name;
-        Player.Money = 5000;
+        bool namebool = false;
+        while (!namebool)
+        {
+            Console.WriteLine("Napiš svoje jméno...");
+            string name = Console.ReadLine();
+            bool empty = string.IsNullOrEmpty(name);
+            bool space = string.IsNullOrWhiteSpace(name);
+            if (empty || space)
+            {
+                Console.WriteLine("Nejedná se o validní string");
+            }
+            else
+            {
+                Player.Name = name;
+                Player.Money = 5000;
+                namebool = true;
+            }
+        }
         
         Console.WriteLine($"Vítej hráči '{Player.Name}'");
         bool menu = true;

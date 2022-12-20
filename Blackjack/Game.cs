@@ -84,9 +84,12 @@ public class Game
                         }
                         break;
                     case "a":
+                        Console.Clear();
                         Dealer.DealCardPlayer();
                         Player.WriteHand();
                         Player.CountHand();
+                        Dealer.WriteDealerCards();
+                        Dealer.CountDealerHand();
                         if (Player.CardTotal == 21 )
                         {
                             Console.WriteLine("Vyhrál jsi!");

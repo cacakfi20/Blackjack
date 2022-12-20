@@ -41,6 +41,10 @@ public class Player
             {
                 Console.WriteLine("Nemáš dostatek peněz");
             }
+            else if (!int.TryParse(sazkaStr, out sazka))
+            {
+                Console.WriteLine("Musíš napsat částku");
+            }
             else
             {
                 Bet = sazka;
