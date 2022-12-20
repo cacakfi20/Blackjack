@@ -1,4 +1,6 @@
-﻿namespace Blackjack;
+﻿using System.Runtime.Serialization;
+
+namespace Blackjack;
 
 public class Game
 {
@@ -144,9 +146,88 @@ public class Game
         }
     }
 
-    public static void Zebricek()
+    public static void ZebricekUloz()
     {
+        string path = @"zebricek.csv";
+        if (!File.Exists(path))
+        {
+            File.Create(path).Dispose();
+        }
         
+        StreamReader sr = new StreamReader(path);
+        List<string[]> data = new List<string[]>();
+
+        string line;
+        bool nick_name = false;
+
+        while((line = sr.ReadLine()) != null)
+        {
+            string[] fields = line.Split(';');
+            Int32.TryParse(fields[1], out int value);
+            if (fields[0] == Player.Name && value < Player.Money)
+            {
+                fields[1] = Player.Money.ToString();
+                nick_name = true;
+            }
+            else if (fields[0] == Player.Name && value >= Player.Money)
+            {
+                nick_name = true;
+            }
+            data.Add(fields);
+        }
+
+        if (!nick_name)
+        {
+            string[] pole = new string[2];
+            pole[0] = Player.Name;
+            pole[1] = Player.Money.ToString();
+            data.Add(pole);
+        }
+
+        sr.Close();
+
+        StreamWriter sw = new StreamWriter(path);
+        foreach (string[] udaj in data)
+        {
+            string newline = string.Format("{0};{1}", udaj[0], udaj[1]);
+            sw.WriteLine(newline);
+        }
+
+        sw.Close();
+    }
+
+    public static void ZebricekNapis()
+    {
+        string path = @"zebricek.csv";
+        if (!File.Exists(path))
+        {
+            File.Create(path).Dispose();
+        }
+
+        StreamReader sr = new StreamReader(path);
+        List<Tuple<string, int>> data = new List<Tuple<string, int>>();
+
+        string line;
+        bool nick_name = false;
+
+        while ((line = sr.ReadLine()) != null)
+        {
+            string[] fields = line.Split(";");
+            Int32.TryParse(fields[1], out int value);
+            string name = fields[0];
+            Tuple<string, int> pole = new Tuple<string, int>(name, value);
+            data.Add(pole);
+        }
+
+        data = data.OrderByDescending(x => x.Item2).ToList();
+        var best = data.Take(5);
+
+        foreach (Tuple<string, int> pair in best)
+        {
+            Console.WriteLine($"{pair.Item1} - {pair.Item2}");
+        }
+
+        sr.Close();
     }
 
     public static void Pravidla()

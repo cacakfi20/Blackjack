@@ -24,8 +24,10 @@ class Blackjack
                 case "1":
                     Game.StartGame();
                     Game.NextCard();
+                    Game.ZebricekUloz();
                     break;
                 case "2":
+                    Game.ZebricekNapis();
                     break;
                 case "3":
                     Game.Pravidla();
