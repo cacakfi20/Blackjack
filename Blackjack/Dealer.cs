@@ -5,17 +5,20 @@ public class Dealer
     public static Object[] Hand = new Object[0];
     public static int CardTotal { get; set; }
 
+    // rozdá kartu hráči
     public static void DealCardPlayer()
     {
         Player.GetCard(Deck.ReturnCardFromTopDeck());
         Deck.RemoveTopCard();
     }
     
+    // pracuji s arrayem tudíž musim nastavit pro začnutí nové hry velikost ruky zpet na 0
     public static void ResetHand()
     {
         Array.Resize(ref Hand, 0);
     }
 
+    // dealer dá kartu sobě
     public static void DealCardDealer()
     {
         Array.Resize(ref Hand, Hand.Length + 1);
@@ -23,6 +26,7 @@ public class Dealer
         Deck.RemoveTopCard();
     }
 
+    // vypíše dealerovi karty
     public static void WriteDealerCards()
     {
         Console.WriteLine("Dealerovi karty:");
@@ -32,6 +36,7 @@ public class Dealer
         }
     }
     
+    // spočítá dealerovu ruku
     public static void CountDealerHand()
     {
         int totalValue = 0;
@@ -75,7 +80,6 @@ public class Dealer
         }
 
         CardTotal = totalValue;
-        //Console.WriteLine($"Dealerův počet je: {CardTotal}");
     }
 
 }

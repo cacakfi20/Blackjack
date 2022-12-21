@@ -4,6 +4,7 @@ namespace Blackjack;
 
 public class Game
 {
+    // funkce pro započetí hry (vytvoreni a zamichani baliku, 1 karta pro dealera, 2 pro hráče, vypsani rukou)
     public static void StartGame()
     {
         Deck.ResetDeck();
@@ -24,6 +25,7 @@ public class Game
         Console.WriteLine("------------");
     }
 
+    // metoda pro další kartu pro hráče/double/ukončení + kontrola vyhry nebo prohry
     public static void NextCard()
     {
         if (Player.CardTotal != 21)
@@ -32,10 +34,12 @@ public class Game
             while (more)
             {
                 Console.WriteLine("Chceš další kartu? a - ano, n - ne, d - double");
-                string choice = Console.ReadLine();
+                char choice = Console.ReadKey().KeyChar;
+                Console.WriteLine();
                 switch (choice)
                 {
-                    case "d":
+                    // case double down - zvojnásobení sázky + poslední karta
+                    case 'd':
                         if (Player.Bet * 2 <= Player.Money + Player.Bet)
                         {
                             more = false;
@@ -83,7 +87,8 @@ public class Game
                             Console.WriteLine("Na double nemáš dostatek peněz");
                         }
                         break;
-                    case "a":
+                    // case ano - dalsi karta pro hrace
+                    case 'a':
                         Console.Clear();
                         Dealer.DealCardPlayer();
                         Player.WriteHand();
@@ -102,7 +107,8 @@ public class Game
                             more = false;
                         }
                         break;
-                    case "n":
+                    // case ne - hráč neobdří kartu a v lízání karet pokračuje dealer
+                    case 'n':
                         Console.Clear();
                         Player.WriteHand();
                         Player.CountHand();
@@ -137,18 +143,19 @@ public class Game
                         }
                         break;
                     default:
-                        Console.WriteLine("vyber prosím buď 'a' nebo 'n'");
+                        Console.WriteLine("vyber prosím buď 'a', 'n', nebo 'd'");
                         break;
                 }
             }
         }
         else
         {
-            Console.WriteLine("Vyhrál jsiiiiiiiiiiii!");
+            Console.WriteLine("Vyhrál jsi!");
             Player.Money += 2 * Player.Bet;
         }
     }
 
+    // ulozeni do zebricku po kazdem kole pokud je skore lepsi nez bylo kdysi na stejné jméno
     public static void ZebricekUloz()
     {
         string path = @"zebricek.csv";
@@ -199,6 +206,7 @@ public class Game
         sw.Close();
     }
 
+    // Vypíše 5 nejlepších hráčů + jejich skore
     public static void ZebricekNapis()
     {
         string path = @"zebricek.csv";
@@ -225,14 +233,18 @@ public class Game
         data = data.OrderByDescending(x => x.Item2).ToList();
         var best = data.Take(5);
 
+        int i = 0;
         foreach (Tuple<string, int> pair in best)
         {
+            Console.Write($"{i}. ");
             Console.WriteLine($"{pair.Item1} - {pair.Item2}");
+            i++;
         }
 
         sr.Close();
     }
 
+    // Vypíše pravidla
     public static void Pravidla()
     {
         Console.Clear();

@@ -9,12 +9,14 @@ public class Player
     public static int CardTotal { get; set; }
     public static Object[] Hand = new Object[0];
 
+    // Hráč obrží kartu od dealera
     public static void GetCard(object card)
     {
         Array.Resize(ref Hand, Hand.Length + 1);
         Hand[Hand.Length - 1] = card;
     }
 
+    // Vypíše karty v ruce
     public static void WriteHand()
     {
         Console.WriteLine("Vaše karty:");
@@ -24,10 +26,13 @@ public class Player
         }
     }
 
+    // pracuji s arrayem tudíž musim nastavit pro začnutí nové hry velikost ruky zpet na 0
     public static void ResetHand()
     {
         Array.Resize(ref Hand, 0);
     }
+    
+    // vložení částky + kontrola vstupu
     public static void BetMoney()
     {
         bool betting = true;
@@ -37,6 +42,7 @@ public class Player
             Console.WriteLine($"Kolik chceš vsadit? (Tvoje peníze: {Money})");
             string sazkaStr = Console.ReadLine();
             int.TryParse(sazkaStr, out sazka);
+            // kontrola zda je input validní
             if (sazka > Money)
             {
                 Console.WriteLine("Nemáš dostatek peněz");
@@ -55,6 +61,7 @@ public class Player
         }
     }
 
+    // spočítá karty v ruce  
     public static void CountHand()
     {
         int totalValue = 0;
@@ -82,6 +89,7 @@ public class Player
             }
         }
 
+        // ošetření Aček, kdy bude A = 1 a kdy A = 11
         if (totalValue > 21 && aceCount > 0)
         {
             for (int i = 0; i < aceCount; i++)
